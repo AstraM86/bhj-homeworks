@@ -5,11 +5,12 @@ const speed = document.getElementById('speed');
 let lastTime = Date.now();
 
 cookie.onclick = () => {
-  if (cookie.width == 200)
+  /*if (cookie.width == 200)
     cookie.width = 220;
   else
   cookie.width = 200;
-  counter.textContent++;
+  counter.textContent++;*/
+  cookie.width = ++counter.textContent % 2 ? 230 : 200;/*тернарное выражение*/
   const curTime = Date.now();
   speed.textContent = (1 / ((curTime - lastTime) / 1000)).toFixed(2);
   lastTime = curTime;
