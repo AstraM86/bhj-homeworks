@@ -1,6 +1,42 @@
 const buttonAdd = document.getElementById('tasks__add');
 const input = document.getElementById('task__input');
 const taskList = document.getElementById('tasks__list');
+const taskForm = document.getElementById('tasks__form');
+
+// Обработчик отправки формы, включая Enter
+taskForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    addTask();
+});
+
+// Один обработчик для удаления всех задач
+taskList.addEventListener('click', function(e) {
+    if (e.target.classList.contains('task__remove')) {
+        e.target.closest('.task').remove();
+    }
+});
+
+function addTask() {
+    const taskText = input.value.trim();
+    if (!taskText) return;
+   
+    // Шаблонную строку для создания элемента
+    taskList.insertAdjacentHTML('afterbegin', `
+        <div class="task">
+            <div class="task__title">
+                ${taskText}
+            </div>
+            <a href="#" class="task__remove">&times;</a>
+        </div>
+    `);
+   
+    input.value = '';
+    input.focus();
+}
+
+/*const buttonAdd = document.getElementById('tasks__add');
+const input = document.getElementById('task__input');
+const taskList = document.getElementById('tasks__list');
 
 buttonAdd.addEventListener('click', addTask);
 
@@ -47,4 +83,4 @@ function addTask(e) {
     taskList.appendChild(taskElement);
     input.value = '';
     input.focus();
-}
+}*/
